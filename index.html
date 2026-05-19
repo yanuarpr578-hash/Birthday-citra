@@ -2,27 +2,85 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy Birthday Sayangkuu</title>
+
   <style>
-    body{margin:0;font-family:Arial;background:linear-gradient(135deg,#ff9eb5,#ff5f8f);color:white;text-align:center;overflow-x:hidden}
-    .container{padding:30px}
-    h1{font-size:2.3rem}
-    .slideshow{max-width:320px;margin:20px auto;position:relative}
-    .slide{display:none;width:100%;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,.3)}
-    .msg{background:rgba(255,255,255,.18);padding:20px;border-radius:20px;max-width:700px;margin:auto}
-    .heart{font-size:2rem;animation:beat 1s infinite}
-    @keyframes beat{50%{transform:scale(1.2)}}
+    body{
+      margin:0;
+      font-family:Arial;
+      background:linear-gradient(135deg,#ff9eb5,#ff5f8f);
+      color:white;
+      text-align:center;
+      overflow-x:hidden;
+    }
+
+    .container{
+      padding:30px;
+      display:none;
+    }
+
+    h1{
+      font-size:2.3rem;
+    }
+
+    .slideshow{
+      max-width:320px;
+      margin:20px auto;
+      position:relative;
+    }
+
+    .slide{
+      display:none;
+      width:100%;
+      border-radius:20px;
+      box-shadow:0 8px 20px rgba(0,0,0,.3);
+    }
+
+    .msg{
+      background:rgba(255,255,255,.18);
+      padding:20px;
+      border-radius:20px;
+      max-width:700px;
+      margin:auto;
+    }
+
+    .heart{
+      font-size:2rem;
+      animation:beat 1s infinite;
+    }
+
+    @keyframes beat{
+      50%{
+        transform:scale(1.2);
+      }
+    }
+
+    #start{
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+      background:linear-gradient(135deg,#ff9eb5,#ff5f8f);
+    }
   </style>
 </head>
+
 <body>
-<div id="start" style="height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;background:linear-gradient(135deg,#ff9eb5,#ff5f8f);">
+
+<div id="start">
   <h1>🎁 Klik untuk buka hadiah kecil buat kamu</h1>
   <p>For Citra Aisyah Rani ❤️</p>
 </div>
-<div class="container" style="display:none;" id="main">
+
+<div class="container" id="main">
+
   <h1>❤️ Happy Birthday<br>Citra Aisyah Rani ❤️</h1>
+
   <p class="heart">💖</p>
+
   <div class="slideshow">
     <img class="slide" src="foto1.jpg">
     <img class="slide" src="foto2.jpg">
@@ -35,14 +93,55 @@
     <img class="slide" src="foto9.jpg">
     <img class="slide" src="foto10.jpg">
   </div>
+
   <div class="msg">
-    <p>Happy Birthday sayang, makasih ya udah menemani aku sampai sejauh ini. Semoga kita bisa terus bersama sampai selamanya. ❤️</p>
+    <p>
+      Happy Birthday sayang, makasih ya udah menemani aku sampai sejauh ini.
+      Semoga kita bisa terus bersama sampai selamanya. ❤️
+    </p>
   </div>
+
 </div>
+
+<audio id="musik" loop>
+  <source src="negoro-angin.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-let i=0;const slides=document.querySelectorAll('.slide');
-function show(){slides.forEach(s=>s.style.display='none');i++;if(i>slides.length)i=1;slides[i-1].style.display='block';setTimeout(show,2500)}show();
-document.getElementById('start').onclick=function(){document.getElementById('start').style.display='none';document.getElementById('main').style.display='block';};
+
+let i = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlides() {
+
+  slides.forEach(slide => {
+    slide.style.display = 'none';
+  });
+
+  i++;
+
+  if(i > slides.length){
+    i = 1;
+  }
+
+  slides[i - 1].style.display = 'block';
+
+  setTimeout(showSlides, 2500);
+}
+
+showSlides();
+
+document.getElementById('start').onclick = function(){
+
+  document.getElementById('start').style.display = 'none';
+
+  document.getElementById('main').style.display = 'block';
+
+  document.getElementById('musik').play();
+
+};
+
 </script>
+
 </body>
 </html>

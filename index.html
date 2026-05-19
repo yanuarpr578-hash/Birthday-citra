@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Sayangkuu</title>
 
   <style>
+
     body{
       margin:0;
-      font-family:Arial;
+      font-family:Arial, sans-serif;
       background:linear-gradient(135deg,#ff9eb5,#ff5f8f);
       color:white;
       text-align:center;
       overflow-x:hidden;
+    }
+
+    #start{
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+      background:linear-gradient(135deg,#ff9eb5,#ff5f8f);
     }
 
     .container{
@@ -22,6 +33,17 @@
 
     h1{
       font-size:2.3rem;
+    }
+
+    .heart{
+      font-size:2rem;
+      animation:beat 1s infinite;
+    }
+
+    @keyframes beat{
+      50%{
+        transform:scale(1.2);
+      }
     }
 
     .slideshow{
@@ -45,26 +67,10 @@
       margin:auto;
     }
 
-    .heart{
-      font-size:2rem;
-      animation:beat 1s infinite;
+    audio{
+      margin-top:20px;
     }
 
-    @keyframes beat{
-      50%{
-        transform:scale(1.2);
-      }
-    }
-
-    #start{
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-      align-items:center;
-      cursor:pointer;
-      background:linear-gradient(135deg,#ff9eb5,#ff5f8f);
-    }
   </style>
 </head>
 
@@ -97,25 +103,26 @@
   <div class="msg">
     <p>
       Happy Birthday sayang, makasih ya udah menemani aku sampai sejauh ini.
-      Semoga kita bisa terus bersama sampai selamanya. ❤️
+      Semoga kita bisa terus bersama sampai selamanya ❤️
     </p>
   </div>
 
-</div>
+  <audio id="musik" controls loop>
+    <source src="negoro-angin.mp3" type="audio/mpeg">
+  </audio>
 
-<audio id="musik" loop>
-  <source src="negoro-angin.mp3" type="audio/mpeg">
-</audio>
+</div>
 
 <script>
 
 let i = 0;
+
 const slides = document.querySelectorAll('.slide');
 
-function showSlides() {
+function showSlides(){
 
   slides.forEach(slide => {
-    slide.style.display = 'none';
+    slide.style.display = "none";
   });
 
   i++;
@@ -124,20 +131,24 @@ function showSlides() {
     i = 1;
   }
 
-  slides[i - 1].style.display = 'block';
+  slides[i - 1].style.display = "block";
 
   setTimeout(showSlides, 2500);
 }
 
 showSlides();
 
-document.getElementById('start').onclick = function(){
+document.getElementById("start").onclick = function(){
 
-  document.getElementById('start').style.display = 'none';
+  document.getElementById("start").style.display = "none";
 
-  document.getElementById('main').style.display = 'block';
+  document.getElementById("main").style.display = "block";
 
-  document.getElementById('musik').play();
+  const musik = document.getElementById("musik");
+
+  musik.play().catch(() => {
+    console.log("Autoplay diblok browser");
+  });
 
 };
 
